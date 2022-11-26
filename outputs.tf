@@ -1,11 +1,11 @@
 output "this" {
-  value = kubernetes_service_account.this
+  value = kubernetes_service_account_v1.this
 }
 
 output "token" {
-  value = data.kubernetes_secret.this.data.token
+  value = kubernetes_secret_v1.this.data.token
 }
 
 output "ca_crt" {
-  value = data.kubernetes_secret.this.data["ca.crt"]
+  value = kubernetes_secret_v1.this.data["ca.crt"]
 }

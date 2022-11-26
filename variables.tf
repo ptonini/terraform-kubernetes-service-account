@@ -2,6 +2,10 @@ variable "name" {}
 
 variable "namespace" {}
 
+variable "create_token" {
+  default = true
+}
+
 variable "cluster_role_rules" {
   type = list(object({
     api_groups = list(string)
