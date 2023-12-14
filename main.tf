@@ -1,7 +1,9 @@
 resource "kubernetes_service_account_v1" "this" {
   metadata {
-    name      = var.name
-    namespace = var.namespace
+    name        = var.name
+    namespace   = var.namespace
+    labels      = var.labels
+    annotations = var.annotations
   }
 }
 
@@ -26,7 +28,7 @@ module "cluster_role" {
 
 resource "kubernetes_cluster_role_binding" "this" {
   provider = kubernetes
-  for_each = var.create_bindings ? toset(compact(concat([module.cluster_role[0].this.metadata[0].name], var.cluster_role_bindings))) : []
+  for_each = var.create_bindings ? toset(compact(concat(module.cluster_role[*].this.metadata[0].name, var.cluster_role_bindings))) : []
 
   metadata {
     name = kubernetes_service_account_v1.this.metadata[0].name
