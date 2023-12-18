@@ -32,8 +32,9 @@ variable "cluster_roles" {
 }
 
 variable "cluster_role_bindings" {
-  type    = list(string)
-  default = []
+  type     = list(string)
+  default  = []
+  nullable = false
 }
 
 variable "create_bindings" {
