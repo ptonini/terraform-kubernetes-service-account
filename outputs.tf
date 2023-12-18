@@ -3,5 +3,5 @@ output "this" {
 }
 
 output "secret" {
-  value = kubernetes_secret_v1.this.data
+  value = one(kubernetes_secret_v1.this[*].data)
 }
