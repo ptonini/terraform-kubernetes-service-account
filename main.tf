@@ -35,7 +35,7 @@ module "cluster_role" {
 }
 
 resource "kubernetes_cluster_role_binding_v1" "this" {
-  for_each = var.cluster_role_bindings
+  for_each = toset(var.cluster_role_bindings)
 
   metadata {
     name = "${kubernetes_service_account_v1.this.metadata[0].name}-${index(var.cluster_role_bindings, each.key)}"
