@@ -27,7 +27,8 @@ variable "cluster_roles" {
       non_resource_urls = list(string)
     }))
   }))
-  default = {}
+  default  = {}
+  nullable = false
 }
 
 variable "cluster_role_bindings" {
