@@ -36,7 +36,3 @@ variable "cluster_role_bindings" {
   default  = []
   nullable = false
 }
-
-variable "create_bindings" {
-  default = true
-}
