@@ -12,10 +12,10 @@ resource "kubernetes_secret_v1" "this" {
   count = var.create_token ? 1 : 0
 
   metadata {
-    generate_name = var.name
+    generate_name = kubernetes_service_account_v1.this.metadata[0].name
     namespace     = var.namespace
     annotations = {
-      "kubernetes.io/service-account.name" = var.name
+      "kubernetes.io/service-account.name" = kubernetes_service_account_v1.this.metadata[0].name
     }
   }
 
