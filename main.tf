@@ -26,8 +26,8 @@ module "cluster_role" {
   source   = "ptonini/cluster-role/kubernetes"
   version  = "~> 1.1.0"
   for_each = var.cluster_roles
-  name     = each.key
-  rules    = each.value
+  name     = coalesce(each.value.name, each.key)
+  rules    = each.value.rules
   subject = {
     name      = kubernetes_service_account_v1.this.metadata[0].name
     namespace = kubernetes_service_account_v1.this.metadata[0].namespace
